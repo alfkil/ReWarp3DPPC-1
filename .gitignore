@@ -21,6 +21,7 @@
 *.a
 *.la
 *.lo
+*.library # amiga
 
 # Shared objects (inc. Windows DLLs)
 *.dll
