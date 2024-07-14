@@ -1189,22 +1189,25 @@ ENTRY
 	while(ptr->ti_Tag != TAG_DONE) {
 		PARAMX("ti_Tag", ptr->ti_Tag)
 		PARAMX("ti_Data", ptr->ti_Data)
+		// if(ptr->ti_Tag == W3D_SMR_TYPE)
+		// 	ptr->ti_Data = W3D_DRIVER_3DHW;
+		if(ptr->ti_Tag == W3D_SMR_DESTFMT)
+			ptr->ti_Data |= W3D_FMT_A8R8G8B8;
 		ptr++;
 	}
-	struct TagItem newTags[] = {
-		{ W3D_SMR_TYPE, W3D_DRIVER_3DHW },
-		{ W3D_SMR_DESTFMT,
-			W3D_FMT_R5G5B5|
-			W3D_FMT_B5G5R5|
-			W3D_FMT_R5G6B5|
-			W3D_FMT_B5G6R5|
-			W3D_FMT_A8R8G8B8 },
-		{ TAG_DONE, 0 }
-	};
-	result = W3D_RequestMode(newTags);
-#else
-	result = W3D_RequestMode(taglist);
+	// struct TagItem newTags[] = {
+	// 	{ W3D_SMR_TYPE, W3D_DRIVER_3DHW },
+	// 	{ W3D_SMR_DESTFMT,
+	// 		W3D_FMT_R5G5B5|
+	// 		W3D_FMT_B5G5R5|
+	// 		W3D_FMT_R5G6B5|
+	// 		W3D_FMT_B5G6R5|
+	// 		W3D_FMT_A8R8G8B8 },
+	// 	{ TAG_DONE, 0 }
+	// };
+	// result = W3D_RequestMode(newTags);
 #endif
+	result = W3D_RequestMode(taglist);
 
 RETURN(result)
 	return (result);
